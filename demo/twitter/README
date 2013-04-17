@@ -1,0 +1,14 @@
+動かし方
+
+
+1. ディレクトリ内にconst.jsを以下のように作る
+
+
+const OAUTH_CONSUMER_KEY = "";
+const OAUTH_CONSUMER_SECRET = "";
+
+
+2. icon.pngを用意
+
+
+必要な設定は以上

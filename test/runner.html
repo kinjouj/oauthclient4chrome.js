@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Mocha</title>
+    <link rel="stylesheet" href="vendor/mocha.css" />
+
+    <script type="text/javascript" src="../extlib/jquery.js"></script>
+    <script type="text/javascript" src="../extlib/underscore.js"></script>
+    <script type="text/javascript" src="vendor/mocha.js"></script>
+    <script type="text/javascript" src="vendor/chai.js"></script>
+    <script type="text/javascript">
+      chai.should();
+
+      var expect = chai.expect;
+      mocha.setup({ "ui": "bdd", "timeout": 3000, "ignoreLeaks": false });
+    </script>
+
+    <script type="text/javascript" src="../extlib/sha1.js"></script>
+    <script type="text/javascript" src="../extlib/oauth.js"></script>
+    <script type="text/javascript" src="../lib-cov/oauthclient.js"></script>
+  </head>
+  <body style="background: #bbb">
+    <script type="text/javascript" src="01_constructor.js"></script>
+    <script type="text/javascript" src="02_getConsumerKey.js"></script>
+    <script type="text/javascript" src="03_getConsumerSecret.js"></script>
+    <script type="text/javascript" src="04_getToken.js"></script>
+    <script type="text/javascript" src="05_getTokenSecret.js"></script>
+    <script type="text/javascript" src="06_isAuthenticated.js"></script>
+    <script type="text/javascript" src="07_buildRequestURL.js"></script>
+    <script type="text/javascript" src="08_getResponse.js"></script>
+
+    <div id="mocha"></div>
+    <script>
+      if (window.mochaPhantomJS) {
+        mochaPhantomJS.run();
+      } else {
+        mocha.run();
+      }
+    </script>
+  </body>
+</html>

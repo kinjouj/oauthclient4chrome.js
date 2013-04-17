@@ -1,0 +1,140 @@
+* {
+  font-size: 12px;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+a {
+  font-size: 14px;
+  color: blue;
+  text-decoration: none;
+}
+
+.modal {
+  z-index: 1000000;
+}
+
+#content {
+  width: 600px;
+}
+
+#tweets {
+  width: 580px;
+}
+
+#tweets > .tweet {
+  width: 480px;
+  padding: 10px;
+}
+
+#tweets > .tweet > .tweet-icon {
+  float: left;
+  width: 50px;
+}
+
+#tweets > .tweet > .tweet-detail {
+  float: right;
+  width: 400px;
+}
+
+#tweets > .tweet > .tweet-detail > blockquote {
+  line-height: 18px;
+  margin: 5px 0px;
+}
+
+.tweet-info {
+  float: right;
+  padding: 5px 0px;
+}
+
+.tweet-status {
+  clear: both;
+  float: right;
+}
+
+.tweet-status > ul {
+  padding-left: 0px;
+}
+
+.tweet-status > ul > li {
+  list-style: none;
+  float: left;
+  margin-right: 5px;
+}
+
+.tweet-status > ul > li:last-child {
+  margin-right: 0px;
+}
+
+.tweet-status > ul > li > a {
+  font-size: 12px;
+}
+
+.retweet-info {
+  float: right;
+}
+
+.sidr-icon {
+  top: 10px
+}
+
+.sidr-text {
+  display: inline !important;
+  left: 60px;
+}
+
+.sprite-icon-retweet {
+  width: 18px;
+  height: 14px;
+  margin: 0px 5px;
+  display: inline-block;
+  vertical-align: text-top;
+  background-image: url(https://si0.twimg.com/a/1344029401/t1/img/twitter_web_sprite_icons.png);
+  background-position: -60px -350px;
+}
+
+.sprite-icon-tweet {
+  display: inline-block;
+  vertical-align: text-top;
+  background-image: url(https://abs.twimg.com/a/1365443487/t1/img/twitter_web_sprite_icons.png);
+  background-position: -200px -50px;
+  width: 22px;
+  height: 18px;
+}
+
+.sprite-icon-home {
+  display: inline-block;
+  vertical-align: text-top;
+  background-image: url(https://abs.twimg.com/a/1365443487/t1/img/twitter_web_sprite_icons.png);
+  background-position: 0 -110px;
+  width: 21px;
+  height: 22px;
+}
+
+.sprite-icon-mention {
+  display: inline-block;
+  vertical-align: text-top;
+  background-image: url(https://abs.twimg.com/a/1365443487/t1/img/twitter_web_sprite_icons.png);
+  background-position: -80px -50px;
+  width: 21px;
+  height: 22px;
+}
+
+.sprite-icon-list {
+  display: inline-block;
+  vertical-align: text-top;
+  background-image: url(https://abs.twimg.com/a/1365443487/t1/img/twitter_web_sprite_icons.png);
+  background-position: -40px -50px;
+  width: 17px;
+  height: 22px;
+}
+
+.clearfix {
+  clear: both;
+}
