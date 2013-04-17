@@ -1,0 +1,31 @@
+{
+  "name": "OAuthClient.js dropbox demo",
+  "version": "0.1",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_title": "OAuthClient.js dropbox",
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": [
+      "asset/js/jquery.js",
+      "asset/js/underscore.js",
+      "asset/js/sha1.js",
+      "asset/js/oauth.js",
+      "oauthclient.js",
+      "const.js",
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.dropbox.com/1/oauth/authorize"],
+      "js": ["const.js", "content_script.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": ["https://*.dropbox.com/"],
+  "content_security_policy": "script-src 'self' 'unsafe-eval';object-src 'self'"
+}

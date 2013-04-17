@@ -1,0 +1,169 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="asset/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="asset/css/jquery.sidr.dark.css" />
+    <link rel="stylesheet" type="text/css" href="asset/css/popup.css" />
+    <script type="text/javascript" src="asset/js/jquery.js"></script>
+    <script type="text/javascript" src="asset/js/jquery.sidr.js"></script>
+    <script type="text/javascript" src="asset/js/underscore.js"></script>
+    <script type="text/javascript" src="asset/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div id="navbar" class="navbar navbar-inverse" style="display: none">
+      <div class="navbar-inner" style="padding: 10px; border-radius: 0px">
+        <ul class="nav">
+          <li>
+            <a id="slider-menu" href="#" class="btn btn-navbar" data-target="collapse" style="display: block">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="tweet-modal" class="modal hide fade" aria-hidden="true">
+      <div class="modal-header">
+        <h4>send tweet</h4>
+      </div>
+      <div class="modal-body">
+        <input type="text" id="tweet-text" class="input-xxlarge" style="font-size: 20px;height: 50px" />
+      </div>
+      <div class="modal-footer">
+        <button id="modal-tweet-send-button" class="btn btn-large btn-primary" data-target="#tweet-modal" data-dismiss="modal">Tweet</button>
+      </div>
+    </div>
+    <div id="content">
+      <div id="sidebar" style="display: none">
+        <ul>
+          <li>
+            <a id="menu-action-home" href="#">
+              <i class="sprite-icon-home"></i>
+              <span class="sidr-text">ホーム</span>
+            </a>
+          </li>
+          <li>
+            <a id="menu-action-mention" href="#">
+              <i class="sprite-icon-mention"></i>
+              <span class="sidr-text">つながり</span>
+            </a>
+          </li>
+          <li>
+            <a id="menu-action-favo" href="#">
+              <i style="-webkit-filter: invert()" class="icon-heart"></i>
+              <span class="sidr-text">お気に入り</span>
+            </a>
+          </li>
+          <li>
+            <a href="#tweet-modal" data-toggle="modal">
+              <i class="sprite-icon-tweet"></i>
+              <span class="sidr-text">ツイート</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div id="main"></div>
+    </div>
+    <script type="text/javascript" src="popup.js"></script>
+    <script id="tweets-template" type="text/template">
+<div id="tweets">
+<% _.each(tweets, function(tweet) { %>
+<%
+  var retweeted = false;
+  var date = new Date(tweet.created_at);
+
+  if ("retweeted_status" in tweet) {
+    var entities = tweet.entities;
+    var retweetUser = tweet.user;
+
+    tweet = tweet.retweeted_status;
+    tweet.entities = entities;
+    tweet.retweet_user = retweetUser;
+
+    retweeted = true;
+  }
+
+  var text = tweet.text;
+  var entities = tweet.entities;
+  var user = tweet.user;
+
+  if ("hashtags" in entities) {
+    _.each(entities.hashtags, function(hashtag) {
+      var hashtag_text = hashtag.text;
+
+      text = text.replace(
+        '#' + hashtag_text,
+        '<a href="https://twitter.com/search/' + encodeURIComponent('#' + hashtag_text) + '" target="_blank">#' + hashtag_text + '</a>'
+      );
+    });
+  }
+
+  if ("media" in entities) {
+    _.each(entities.media, function(media) {
+      text = text.replace(
+        media.url,
+        '<a href="' + media.media_url_https + '" target="_blank">' + media.url + '</a>'
+      );
+    });
+  }
+
+  if ("urls" in entities) {
+    _.each(entities.urls, function(url) {
+      text = text.replace(
+        url.url,
+        '<a href="' + url.expanded_url + '" target="_blank">' + url.display_url + '</a>'
+      );
+    });
+  }
+
+  if ("user_mentions" in entities) {
+    _.each(entities.user_mentions, function(mention) {
+      text = text.replace(
+        '@' + mention.screen_name,
+        '<a href="https://twitter.com/' + mention.screen_name + '" target="_blank">@' + mention.screen_name + '</a>'
+      );
+    });
+  }
+
+  var source = $(tweet.source);
+
+  if (!(source[0] instanceof HTMLAnchorElement)) {
+    source = $("<a>").attr("href", "https://twitter.com").text(tweet.source);
+  }
+
+  var user = tweet.user;
+%>
+
+<div class="tweet">
+  <div class="tweet-icon">
+    <img src="<%= tweet.user.profile_image_url_https %>" />
+  </div>
+  <div class="tweet-detail">
+    <a href="https://twitter.com/<%= user.screen_name %>" target="_blank"><%= user.name %></a>
+    <blockquote><%= text %></blockquote>
+  </div>
+  <div class="tweet-info">
+    <% if (retweeted) { %>
+    <div class="retweet-info">
+      <span>
+        <i class="sprite-icon-retweet" />
+        Retweeted by <%= tweet.retweet_user.name %>
+      </span>
+    </div>
+    <% } %>
+    <div class="tweet-status">
+      <ul>
+        <li><%= source[0].outerHTML %></li>
+        <li><a href="https://twitter.com/<%= tweet.screen_name %>/statuses/<%= tweet.id_str %>"><%= date.getFullYear() %>/<%= date.getMonth() + 1 %>/<%= date.getDate() %> <%= date.getHours() %>:<%= date.getMinutes() %>:<%= date.getSeconds() %></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="clearfix" />
+</div>
+<% }) %>
+</div>
+    </script>
+  </body>
+</html>

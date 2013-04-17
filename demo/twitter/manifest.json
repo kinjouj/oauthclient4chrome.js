@@ -1,0 +1,30 @@
+{
+  "name": "OAuthClient.js twitter demo",
+  "version": "0.1",
+  "manifest_version": 2,
+  "content_scripts": [
+    {
+      "matches": ["https://api.twitter.com/oauth/authorize"],
+      "js": ["asset/js/underscore.js", "const.js", "content_script.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": [
+      "asset/js/jquery.js",
+      "asset/js/underscore.js",
+      "asset/js/sha1.js",
+      "asset/js/oauth.js",
+      "oauthclient.js",
+      "const.js",
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "permissions": ["https://api.twitter.com/"],
+  "content_security_policy": "script-src 'self' 'unsafe-eval';object-src 'self'"
+}
