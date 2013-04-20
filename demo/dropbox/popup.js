@@ -17,9 +17,13 @@
             return;
           }
 
+          var path = metadata.path.replace(/\s/g, "%20");
+
+          console.log("path: " + path);
+
           var url = dropbox.buildRequestURL(
             "GET",
-            "https://api-content.dropbox.com/1/thumbnails/sandbox" + metadata.path,
+            "https://api-content.dropbox.com/1/thumbnails/sandbox" + path,
             { "size": "m" }
           );
 
@@ -40,6 +44,8 @@
               URL.revokeObjectURL(oURL);
             };
             image.src = oURL;
+            image.alt = metadata.path;
+            image.title = metadata.path;
 
             $("#images").append(image);
           };

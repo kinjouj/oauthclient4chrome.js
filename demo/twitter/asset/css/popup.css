@@ -43,9 +43,11 @@ a {
   width: 400px;
 }
 
-#tweets > .tweet > .tweet-detail > blockquote {
+#tweets > .tweet > .tweet-detail > div {
   line-height: 18px;
   margin: 5px 0px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .tweet-info {
