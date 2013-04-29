@@ -28,16 +28,10 @@
           );
 
           var xhr = new XMLHttpRequest();
-          xhr.responseType = "arraybuffer";
+          xhr.responseType = "blob";
           xhr.open("GET", url, true);
           xhr.onload = function() {
-            var data = new Uint8Array(this.response);
-            var oURL = URL.createObjectURL(
-              new Blob(
-                [data],
-                { type: metadata.mime_type }
-              )
-            );
+            var oURL = URL.createObjectURL(this.response);
 
             var image = new Image();
             image.onload = function() {

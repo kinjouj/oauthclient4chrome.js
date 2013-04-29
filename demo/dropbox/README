@@ -8,7 +8,7 @@ const OAUTH_CONSUMER_KEY = "";
 const OAUTH_CONSUMER_SECRET = "";
 
 
-値はTwitter APIのアプリケーション作成からコピペ
+値はDropbox APIのアプリケーション作成からコピペ
 
 
 2. icon.pngを用意
