@@ -22,6 +22,15 @@ a {
 
 .sidr {
   position: relative;
+  background-color: rgb(27, 27, 27);
+}
+
+.sidr ul {
+  border: 0px;
+}
+
+.sidr li {
+  border: 0px !important;
 }
 
 .modal {
