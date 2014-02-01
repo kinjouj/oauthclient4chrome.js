@@ -16,6 +16,14 @@ a {
   text-decoration: none;
 }
 
+.navbar {
+  margin-bottom: 0px;
+}
+
+.sidr {
+  position: relative;
+}
+
 .modal {
   z-index: 1000000;
 }

@@ -2,7 +2,7 @@
   $('#slider-menu').sidr({
     "source": "#sidebar",
     "renaming": false,
-    "body": "html"
+    "body": "#main"
   });
 
   chrome.runtime.getBackgroundPage(function(bgPage) {
