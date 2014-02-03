@@ -132,12 +132,10 @@
 
   var source = $(tweet.source);
 
-  if (!(source[0] instanceof HTMLAnchorElement)) {
-    source = $("<a>")
-      .attr("href", "https://twitter.com")
-      .attr("target", "_blank")
-      .text(tweet.source);
-  }
+  if (!(source[0] instanceof HTMLAnchorElement))
+    source = $("<a>").attr("href", "https://twitter.com").text(tweet.source);
+
+  source.attr("target", "_blank");
 
   var user = tweet.user;
 %>
